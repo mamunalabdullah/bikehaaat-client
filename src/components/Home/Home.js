@@ -1,13 +1,18 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
 import Banner from '../Banner/Banner';
-import Inventories from '../ManageInventory/Inventories';
+import { InventoriesHook } from '../Hook/InventoriesHook';
+import Inventory from '../ManageInventory/Inventory';
+import Subscribe from '../Subscribe/Subscribe';
 
 const Home = () => {
+    const [inventories] = InventoriesHook([]);
     return (
         <div>
             <Banner />
-            <Inventories />
+            {
+                inventories.slice(0, 6).map( inventory => <Inventory />)
+            }
+            <Subscribe />
         </div>
     );
 };

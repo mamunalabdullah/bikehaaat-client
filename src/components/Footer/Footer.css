@@ -1,0 +1,16 @@
+.footer{
+    background: #111;
+}
+.footer ul{
+    text-align: start;
+}
+.footer ul li{
+    list-style: none;
+    color: #fff;
+}
+.footer-link{
+    color: #fff;
+    
+    text-decoration: none;
+}
+
