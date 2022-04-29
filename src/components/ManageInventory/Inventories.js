@@ -1,15 +1,17 @@
+import { Link } from 'react-router-dom';
 import { InventoriesHook } from '../Hook/InventoriesHook';
 import Inventory from './Inventory';
 
 const Inventories = () => {
     const [ inventories ] = InventoriesHook([]);
     return (
-        <div className='container text-center py-2'>
-            <div>
+        <div className="container py-5">
+            <div className='row'>
                 {
-                    inventories.map( item => <Inventory key={item.id} item={item} />)
-                }
+                    inventories.slice(0, 6).map( inventory => <Inventory key={inventory.id} inventory={inventory} />)
+                } 
             </div>
+            <Link to="/minventory" className="btn btn-primary">Inventories</Link>
         </div>
     );
 };
