@@ -42,11 +42,7 @@ const SignUp = () => {
         errorMessage = <p>Loading...</p>;
       }
       if (googleUser) {
-        return (
-          <div>
-            <p>Signed In User: {user.email}</p>
-          </div>
-        );
+        navigate(from, {replace: true});
       }
 
       /////////////////////////////////////////////////////////////////////////

@@ -32,8 +32,7 @@ const SignIn = () => {
         event.preventDefault();
         const email = emailRef.current.value;
         const password = passwordRef.current.value;
-        
-
+    
         signInWithEmailAndPassword(email, password);
         
     }
@@ -61,11 +60,7 @@ const SignIn = () => {
         errorMessage = <p>Loading...</p>;
       }
       if (googleUser) {
-        return (
-          <div>
-            <p>Signed In User: {user.email}</p>
-          </div>
-        );
+        navigate(from, {replace: true});
       }
 
       /////////////////////////////////////////////////////////////////////////
