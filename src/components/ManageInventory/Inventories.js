@@ -8,7 +8,7 @@ const Inventories = () => {
         <div className="container py-5">
             <div className='row'>
                 {
-                    inventories.slice(0, 6).map( inventory => <Inventory key={inventory.id} inventory={inventory} />)
+                    inventories.slice(0, 6).map( inventory => <Inventory key={inventory._id} inventory={inventory} />)
                 } 
             </div>
             <Link to="/minventory" className="btn btn-primary mt-5">Inventories</Link>

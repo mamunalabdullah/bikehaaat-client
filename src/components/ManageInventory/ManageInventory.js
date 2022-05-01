@@ -8,7 +8,7 @@ const ManageInventory = () => {
         <div className="container py-5">
             <div className='row'>
                 {
-                    inventories.map( inventory => <Inventory key={inventory.id} inventory={inventory} />)
+                    inventories.map( inventory => <Inventory key={inventory._id} inventory={inventory} />)
                 }  
             </div>
         </div>

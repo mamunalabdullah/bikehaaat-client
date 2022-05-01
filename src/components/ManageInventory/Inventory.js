@@ -1,11 +1,11 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const Inventory = (props) => {
     const {id, picture, price, name, description} = props.inventory;
     const navigate = useNavigate();
 
-    const inventoryDetail = id => {
+    const inventoryDetails = id => {
         navigate(`/inventory/${id}`);
     }
     return (
@@ -16,7 +16,7 @@ const Inventory = (props) => {
                     <h5 className="card-title">{name}</h5>
                     <p className="card-text">{description.slice(0,150)}</p>
                     <p>Price: {price}</p>
-                    <button className='btn btn-primary' onClick={() => inventoryDetail(id)}>Manage</button>
+                    <button className='btn btn-primary' onClick={() => inventoryDetails(id)}>Manage</button>
                 </div>
             </div> 
         </div>
