@@ -7,9 +7,8 @@ import Blog from './components/Blog/Blog';
 import Footer from './components/Footer/Footer';
 import Header from './components/Header/Header';
 import Home from './components/Home/Home';
-import Inventory from './components/ManageInventory/Inventory';
+import Inventories from './components/ManageInventory/Inventories';
 import InventoryDetails from './components/ManageInventory/InventoryDetails';
-import ManageInventory from './components/ManageInventory/ManageInventory';
 import NotFound from './components/NotFound/NotFound';
 import RequireAuth from './components/RequireAuth/RequireAuth';
 
@@ -20,16 +19,14 @@ function App() {
       <Routes>
         <Route path='/' element={<Home />}/>
         <Route path='home' element={<Home />}/>
-        <Route path='minventory' element={
+        <Route path='inventories' element={
           <RequireAuth>
-            <ManageInventory />
-          </RequireAuth>}/>
-        <Route path='' element={<Inventory />}/>
-        <Route path='inventory/:id' element={
-          <RequireAuth>
-            <InventoryDetails />
-          </RequireAuth>
-        }/>
+            <Inventories />
+          </RequireAuth>} />
+          <Route path='inventory/:id' element={
+            <RequireAuth>
+              <InventoryDetails />
+            </RequireAuth>} />
         <Route path='blog' element={<Blog />}/>
         <Route path='about' element={<About />}/>
         <Route path='login' element={<SignIn />}/>
