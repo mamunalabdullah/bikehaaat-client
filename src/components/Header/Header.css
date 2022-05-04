@@ -1,0 +1,9 @@
+.link, .active-link{
+    text-decoration: none;
+    margin-right: 20px;
+    color: #111;
+}
+.link:hover, .active-link, .active-link:hover{
+    color: #f91e48;
+    font-weight: 500;
+}
