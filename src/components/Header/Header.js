@@ -32,18 +32,28 @@ const Header = () => {
                   <NavLink className={({isActive}) => 
                 isActive ? "active-link" : "link" } to="/about">About</NavLink>
                 </li>
-                <li className="nav-item">
-                  <NavLink className={({isActive}) => 
-                isActive ? "active-link" : "link" } to="/inventories">Inventories</NavLink>
-                </li>
-                <li className="nav-item">
-                  <NavLink className={({isActive}) => 
-                isActive ? "active-link" : "link" } to="/addinventory">Upload</NavLink>
-                </li>
+                
+                
                 {
                     user? 
-                    <button className='link border-1' onClick={logOut}>Log out</button> : 
                     <ul className= "navbar-nav me-auto mb-2 mb-lg-0">
+                      <li className="nav-item">
+                        <NavLink className={({isActive}) => 
+                        isActive ? "active-link" : "link" } to="/inventories">Inventories</NavLink>
+                      </li>
+                      <li className="nav-item">
+                        <NavLink className={({isActive}) => 
+                        isActive ? "active-link" : "link" } to="/addinventory">Upload</NavLink>
+                      </li>
+                      <li className="nav-item">
+                        <NavLink className={({isActive}) => 
+                        isActive ? "active-link" : "link" } to="/minventory">Manage</NavLink>
+                      </li>
+                      <button className='link border-1' onClick={logOut}>Log out</button>
+                    </ul>
+                     : 
+                    <ul className= "navbar-nav me-auto mb-2 mb-lg-0">
+                      
                       <li classname="nav-item">
                         <NavLink className={({isActive}) => 
                         isActive ? "active-link" : "link" } to="/login">Sign In</NavLink>

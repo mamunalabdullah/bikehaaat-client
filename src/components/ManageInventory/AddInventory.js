@@ -11,7 +11,7 @@ const AddInventory = () => {
         const quantity = event.target.quantity.value;
         const price = event.target.price.value;
         const supplier = event.target.supplier.value;
-        toast('Inventory add succes')
+        toast('Inventory add success');
         event.target.reset();
 
         const url = `http://localhost:5000/inventoryAdd`;
