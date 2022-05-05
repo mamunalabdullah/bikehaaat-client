@@ -11,3 +11,4 @@ const [inventories, setInventories] = useState([]);
 
     return [inventories, setInventories];
 }
+
