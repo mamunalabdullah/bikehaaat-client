@@ -16,9 +16,21 @@ const InventoryDetails = () => {
         .then(res => res.json())
         .then(data => setInventory(data));
     }, []);
+
+    const handleRestock = (event) =>{
+        event.preventDefault();
+        const number = event.target.number.value;
+        console.log(number);
+        event.target.reset();
+    }
+
     return (
-        <div>
-            <div className="card mx-auto my-5" style= {{width:18+"rem"}}>
+        <div className='py-5'>
+            <form onSubmit={handleRestock}>
+                <input type="number" name="number" id="number" placeholder='Add quantity to restock' />
+                <button type="submit" className='ms-2 bg-info border-0'>Restock</button>
+            </form>
+            <div className="card mx-auto my-2" style= {{width:18+"rem"}}>
                 <img src={inventory.picture} className="card-img-top" alt="..." />
                 <div className="card-body">
                     <h5 className="card-title">{inventory.name}</h5>

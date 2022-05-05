@@ -1,16 +1,19 @@
+import axios from 'axios';
 import React from 'react';
 import { Button, Form } from 'react-bootstrap';
-import { toast, ToastContainer } from 'react-toastify';
+import { toast } from 'react-toastify';
 
 const AddInventory = () => {
     const handleUpload = (event) => {
         event.preventDefault();
+        const email = event.target.email.value;
         const name = event.target.name.value;
         const picture = event.target.picture.value;
         const description = event.target.description.value;
         const quantity = event.target.quantity.value;
         const price = event.target.price.value;
         const supplier = event.target.supplier.value;
+        const item = {email, name, picture, description, quantity, price, supplier};
         toast('Inventory add success');
         event.target.reset();
 
@@ -21,24 +24,32 @@ const AddInventory = () => {
                 'Content-type': 'application/json',
             },
             body: JSON.stringify({
-                name, picture, description, quantity, price, supplier
+                email, name, picture, description, quantity, price, supplier
             }),
             
         })
-            .then((response) => response.json())
-            .then((json) => console.log(json));
+        .then((response) => response.json())
+        .then((json) => console.log(json));
+
+        axios.post('http://localhost:5000/item', item)
+        .then(response => {
+            console.log(response);
+        })
     }
     return (
         <div>
             <div className="container py-5">
-                <div className="row">
-                    
+                <div className="row"> 
                     <div className="col-md-6 mx-auto">
                         <div className="tab-content" id="myTabContent">
                             <div className="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                                 <h3 className="">Add New Product</h3>
                                 <div className="row bg-info py-3">
                                     <Form onSubmit={handleUpload}>
+                                        <Form.Group className="mb-3" controlId="formBasicEmail">
+                                            <Form.Label>Your Email</Form.Label>
+                                            <Form.Control type="email" name='email' placeholder="Enter your email" required />
+                                        </Form.Group>
                                         <Form.Group className="mb-3" controlId="formBasicEmail">
                                             <Form.Label>Product Name</Form.Label>
                                             <Form.Control type="text" name='name' placeholder="Enter product name" required />
@@ -70,7 +81,6 @@ const AddInventory = () => {
                                         </Button>
                                     </Form>
                                 </div>
-                                <ToastContainer />
                             </div>
                         </div>
                     </div>

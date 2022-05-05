@@ -18,7 +18,7 @@ const Header = () => {
             <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
               <span className="navbar-toggler-icon"></span>
             </button>
-            <div className="collapse navbar-collapse" id="navbarText">
+            <div className="collapse navbar-collapse" id="navbarSupportedContent">
               <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                 <li className="nav-item">
                   <NavLink className={({isActive}) => 
@@ -47,6 +47,10 @@ const Header = () => {
                       </li>
                       <li className="nav-item">
                         <NavLink className={({isActive}) => 
+                        isActive ? "active-link" : "link" } to="/items">My-Items</NavLink>
+                      </li>
+                      <li className="nav-item">
+                        <NavLink className={({isActive}) => 
                         isActive ? "active-link" : "link" } to="/minventory">Manage</NavLink>
                       </li>
                       <button className='link border-1' onClick={logOut}>Log out</button>
@@ -65,7 +69,6 @@ const Header = () => {
                     </ul>
                   }
               </ul>
-              
             </div>
           </div>
         </nav>

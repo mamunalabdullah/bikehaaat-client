@@ -1,5 +1,5 @@
 import React from 'react';
-import { toast, ToastContainer } from 'react-toastify';
+import { toast } from 'react-toastify';
 import { InventoriesHook } from '../Hook/InventoriesHook';
 
 const ManageInventory = () => {
@@ -37,7 +37,6 @@ const ManageInventory = () => {
                 </div>)
             }
         </div>
-        <ToastContainer />
         </div>
     );
 };

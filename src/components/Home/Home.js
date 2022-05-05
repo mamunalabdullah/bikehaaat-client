@@ -14,7 +14,7 @@ const Home = () => {
                 <div className='row'>
                     {
                         inventories.slice(0, 6).map( inventory => <Inventory key={inventory._id} inventory={inventory} />)
-                    } 
+                    }
                 </div>
                 <Link to="/inventories" className="btn btn-primary my-5">Inventories</Link>
             </div>      
