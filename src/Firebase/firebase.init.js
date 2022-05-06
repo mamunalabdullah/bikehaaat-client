@@ -6,12 +6,12 @@ import { getAuth } from "firebase/auth";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyBTHwBYNFDTpUNJpzXC_a9agpbpq4mwt08",
-  authDomain: "bikehaaat.firebaseapp.com",
-  projectId: "bikehaaat",
-  storageBucket: "bikehaaat.appspot.com",
-  messagingSenderId: "922961734260",
-  appId: "1:922961734260:web:3bd819b0153b8bda0a3f21"
+  apiKey: "AIzaSyBa98fKnZflX6KjVG15JTbstiB4O_3WrzE",
+  authDomain: "bikehaaat-f2ef4.firebaseapp.com",
+  projectId: "bikehaaat-f2ef4",
+  storageBucket: "bikehaaat-f2ef4.appspot.com",
+  messagingSenderId: "307476130920",
+  appId: "1:307476130920:web:12e29f2600cdb71ee19fdd"
 };
 
 // Initialize Firebase
