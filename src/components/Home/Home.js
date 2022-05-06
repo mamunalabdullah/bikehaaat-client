@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Banner from '../Banner/Banner';
 import { InventoriesHook } from '../Hook/InventoriesHook';
 import Inventory from '../ManageInventory/Inventory';
+import Map from '../Map/Map';
 import Subscribe from '../Subscribe/Subscribe';
 
 const Home = () => {
@@ -19,6 +20,7 @@ const Home = () => {
                 <Link to="/inventories" className="btn btn-primary my-5">Inventories</Link>
             </div>      
             <Subscribe />
+            <Map />
         </div>
     );
 };

@@ -20,3 +20,5 @@ https://bikehaaat-f2ef4.web.app/
 5. express js
 6. cors
 7. heroku database
+8. react leaflet
+9. 

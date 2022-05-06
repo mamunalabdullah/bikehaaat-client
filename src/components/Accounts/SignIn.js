@@ -6,12 +6,15 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import auth from '../../Firebase/firebase.init';
+import useToken from '../Hook/useToken';
 
 const SignIn = () => {
 
     // email authentication /////////////////////////////////////////
-
+    
     const [signInWithEmailAndPassword, user, loading, error] =useSignInWithEmailAndPassword(auth);
+
+    const [token] = useToken(user);
 
     const navigate = useNavigate()
     const location = useLocation();
@@ -26,7 +29,7 @@ const SignIn = () => {
     if (loading) {
         errorMessage = <p>Loading...</p>;
       }
-    if (user) {
+    if (token) {
         navigate(from, {replace: true});
     }
 
@@ -37,9 +40,6 @@ const SignIn = () => {
         event.target.reset();
     
         await signInWithEmailAndPassword(email, password);
-        const {data} = await axios.post('https://evening-wave-77311.herokuapp.com/login', {email});
-        localStorage.setItem('token', data.token)
-        navigate(from, {replace: true});
     }
 
     /////////////////////////////////////////////////////////////////
@@ -66,7 +66,7 @@ const SignIn = () => {
             
             const credential = GoogleAuthProvider.credentialFromResult(result);
             const user = result.user;
-            if (user) {
+            if (token) {
                 navigate(from, {replace: true});
             }
             

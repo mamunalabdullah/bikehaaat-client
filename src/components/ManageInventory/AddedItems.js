@@ -11,7 +11,7 @@ const AddedItems = () => {
     const navigate = useNavigate();
     useEffect( () => {
         const getItems = async() => {
-            const email = user.email;
+            const email = user?.email;
             const url =`https://evening-wave-77311.herokuapp.com/item?email=${email}`;
             try {
                 const {data} = await axiosPrivate.get(url);
