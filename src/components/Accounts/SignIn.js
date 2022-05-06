@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import React, { useRef } from 'react';
 import { useSignInWithEmailAndPassword, useSendPasswordResetEmail, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
@@ -26,13 +27,14 @@ const SignIn = () => {
         errorMessage = <p>Loading...</p>;
       }
     if (user) {
-        // navigate(from, {replace: true});
+        navigate(from, {replace: true});
     }
 
     const handleLogin = async event => {
         event.preventDefault();
         const email = emailRef.current.value;
         const password = passwordRef.current.value;
+        event.target.reset();
     
         await signInWithEmailAndPassword(email, password);
         const {data} = await axios.post('https://evening-wave-77311.herokuapp.com/login', {email});
@@ -53,20 +55,33 @@ const SignIn = () => {
 
     ///////////////////////////////////////////////////////////////////
 
-    // google authentication ///////////////////////////////////////////
-    
-    const [signInWithGoogle, googleUser, googleLoading, googleError] = useSignInWithGoogle(auth);
-    if (googleError) {
-            errorMessage = <p>{googleError.message}</p>;
-        }
-    if (googleLoading) {
-        errorMessage = <p>Loading...</p>;
-      }
-      if (googleUser) {
-        navigate(from, {replace: true});
-      }
+    // google authentication///////////////////////////////////////
 
-      /////////////////////////////////////////////////////////////////////////
+    const provider = new GoogleAuthProvider();
+    
+    const handleGoogle = () => {
+        
+        signInWithPopup(auth, provider)
+        .then((result) => {
+            
+            const credential = GoogleAuthProvider.credentialFromResult(result);
+            const user = result.user;
+            if (user) {
+                navigate(from, {replace: true});
+            }
+            
+        }).catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            // The email of the user's account used.
+            const email = error.email;
+            // The AuthCredential type that was used.
+            const credential = GoogleAuthProvider.credentialFromError(error);
+            // ...
+        });
+
+    }
+    /////////////////////////////////////////////////////////////////////////
 
 
     return (
@@ -83,7 +98,7 @@ const SignIn = () => {
                 <div className="buttons my-4">
                     <button type="submit" className="btn btn-primary">Login</button>
                     <span className='mx-2 text-danger fw-bold'>/</span>
-                    <button className="btn btn-info" onClick={() => signInWithGoogle()}>Login with Google</button>
+                    <button className="btn btn-info" onClick={handleGoogle}>Login with Google</button>
                 </div>
                 <div className="redirect">
                     <p>

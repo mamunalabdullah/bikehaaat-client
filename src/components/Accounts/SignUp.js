@@ -24,6 +24,7 @@ const SignUp = () => {
         const name = event.target.name.value;
         const email = event.target.email.value;
         const password = event.target.password.value;
+        event.target.reset();
         
 
         createUserWithEmailAndPassword(email, password);
