@@ -14,7 +14,7 @@ const AddInventory = () => {
         const price = event.target.price.value;
         const supplier = event.target.supplier.value;
         const item = {email, name, picture, description, quantity, price, supplier};
-        toast('Inventory add success');
+        toast('Add success');
         event.target.reset();
 
         const url = `https://evening-wave-77311.herokuapp.com/inventoryAdd`;
