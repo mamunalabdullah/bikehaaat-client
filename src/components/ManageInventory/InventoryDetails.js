@@ -11,7 +11,7 @@ const InventoryDetails = () => {
         console.log(quantity);
     } 
     useEffect(() => {
-        const url = `http://localhost:5000/inventory/${id}`;
+        const url = `https://evening-wave-77311.herokuapp.com/inventory/${id}`;
         fetch(url)
         .then(res => res.json())
         .then(data => setInventory(data));

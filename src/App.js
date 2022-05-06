@@ -12,7 +12,9 @@ import AddedItems from './components/ManageInventory/AddedItems';
 import AddInventory from './components/ManageInventory/AddInventory';
 import Inventories from './components/ManageInventory/Inventories';
 import InventoryDetails from './components/ManageInventory/InventoryDetails';
+import InventoryList from './components/ManageInventory/InventoryList';
 import ManageInventory from './components/ManageInventory/ManageInventory';
+import UpdateInventory from './components/ManageInventory/UpdateInventory';
 import NotFound from './components/NotFound/NotFound';
 import RequireAuth from './components/RequireAuth/RequireAuth';
 
@@ -39,9 +41,17 @@ function App() {
           <RequireAuth>
             <InventoryDetails />
           </RequireAuth>} />
+        <Route path='editInventory/:id' element={
+          <RequireAuth>
+            <UpdateInventory />
+          </RequireAuth>} />
         <Route path='items' element={
           <RequireAuth>
             <AddedItems />
+          </RequireAuth>} />
+        <Route path='inventoryList' element={
+          <RequireAuth>
+            <InventoryList />
           </RequireAuth>} />
         <Route path='blog' element={<Blog />}/>
         <Route path='about' element={<About />}/>

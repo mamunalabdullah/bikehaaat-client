@@ -12,7 +12,7 @@ const AddedItems = () => {
     useEffect( () => {
         const getItems = async() => {
             const email = user.email;
-            const url =`http://localhost:5000/item?email=${email}`;
+            const url =`https://evening-wave-77311.herokuapp.com/item?email=${email}`;
             try {
                 const {data} = await axiosPrivate.get(url);
                 setItems(data);

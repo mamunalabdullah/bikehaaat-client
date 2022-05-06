@@ -35,7 +35,7 @@ const SignIn = () => {
         const password = passwordRef.current.value;
     
         await signInWithEmailAndPassword(email, password);
-        const {data} = await axios.post('http://localhost:5000/login', {email});
+        const {data} = await axios.post('https://evening-wave-77311.herokuapp.com/login', {email});
         localStorage.setItem('token', data.token)
         navigate(from, {replace: true});
     }

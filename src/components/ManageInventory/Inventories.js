@@ -10,14 +10,14 @@ const Inventories = () => {
     const [inventories, setInventories] = InventoriesHook([]);
 
     // useEffect(() => {
-    //     const url = `http://localhost:5000/inventories?page=${page}&size=${size}`;
+    //     const url = `https://evening-wave-77311.herokuapp.com/inventories?page=${page}&size=${size}`;
     //     fetch(url)
     //     .then(res => res.json())
     //     .then(data => setInventories(data))
     // },[page, size])
 
     // useEffect(() => {
-    //     const url = `http://localhost:5000/inventoryCount`;
+    //     const url = `https://evening-wave-77311.herokuapp.com/inventoryCount`;
     //     fetch(url)
     //     .then(res => res.json())
     //     .then(data => {

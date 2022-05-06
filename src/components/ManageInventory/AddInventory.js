@@ -17,7 +17,7 @@ const AddInventory = () => {
         toast('Inventory add success');
         event.target.reset();
 
-        const url = `http://localhost:5000/inventoryAdd`;
+        const url = `https://evening-wave-77311.herokuapp.com/inventoryAdd`;
         fetch(url, {
             method: 'POST',
             headers: {
@@ -31,7 +31,7 @@ const AddInventory = () => {
         .then((response) => response.json())
         .then((json) => console.log(json));
 
-        axios.post('http://localhost:5000/item', item)
+        axios.post('https://evening-wave-77311.herokuapp.com/item', item)
         .then(response => {
             console.log(response);
         })
