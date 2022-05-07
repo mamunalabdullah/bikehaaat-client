@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useCreateUserWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import auth from '../../Firebase/firebase.init';
-import useToken from '../Hook/useToken';
+// import useToken from '../Hook/useToken';
 
 
 const SignUp = () => {
@@ -11,14 +11,14 @@ const SignUp = () => {
 
     const [ createUserWithEmailAndPassword, user ] = useCreateUserWithEmailAndPassword(auth, {sendEmailVerification: true});
 
-    const [token] = useToken(user)
+    // const [token] = useToken(user)
 
     const navigate = useNavigate()
     const location = useLocation();
     let from = location.state?.from?.pathname || "/";
     let errorMessage;
 
-    if (token) {
+    if (user) {
         navigate(from, {replace: true});
     }
 

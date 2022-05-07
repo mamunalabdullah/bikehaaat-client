@@ -31,7 +31,7 @@ const AddInventory = () => {
         .then((response) => response.json())
         .then((json) => console.log(json));
 
-        axios.post('https://evening-wave-77311.herokuapp.com/item', item)
+        axios.post('http://localhost:5000/item', item)
         .then(response => {
             console.log(response);
         })

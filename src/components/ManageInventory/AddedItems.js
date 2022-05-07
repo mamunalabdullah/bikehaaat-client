@@ -1,35 +1,39 @@
+import axios from 'axios';
 import { signOut } from 'firebase/auth';
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import auth from '../../Firebase/firebase.init';
-import axiosPrivate from '../axios/axiosPrivate';
+// import axiosPrivate from '../axios/axiosPrivate';
 
 const AddedItems = () => {
-    const [user] = useAuthState(auth)
+    const [user] = useAuthState(auth);
+    console.log(user);
     const [items, setItems] = useState([]);
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
     useEffect( () => {
         const getItems = async() => {
             const email = user?.email;
-            const url =`https://evening-wave-77311.herokuapp.com/item?email=${email}`;
-            try {
-                const {data} = await axiosPrivate.get(url);
-                setItems(data);
-            } catch (error) {
-                console.log(error.message);
-                if(error.response.status === 401 || error.response.status === 403){
-                    signOut(auth)
-                    navigate('/login')
-                }
-            }   
+            const url =`http://localhost:5000/item?email=${email}`;
+            const {data} = await axios.get(url);
+            setItems(data)
+            // try {
+            //     const {data} = await axiosPrivate.get(url);
+            //     setItems(data);
+            // } catch (error) {
+            //     console.log(error.message);
+            //     if(error.response.status === 401 || error.response.status === 403){
+            //         signOut(auth)
+            //         // navigate('/login')
+            //     }
+            // }   
         }
         getItems()
     },[user])
     return (
         <div>
             <h2 className='py-3'>total items: {items.length}</h2>
-            {
+            {/* {
                 items.map(item => <div key={item._id} className='container py-5'>
                     <div className="row">
                         <div className="card" style= {{width:18+"rem"}}>
@@ -43,7 +47,7 @@ const AddedItems = () => {
                         </div> 
                     </div>
                 </div>)
-            }
+            } */}
         </div>
     );
 };
