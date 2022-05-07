@@ -6,6 +6,8 @@ https://github.com/ProgrammingHeroWC4/warehouse-management-server-side-mamunalab
 
 # live site link
 https://bikehaaat-f2ef4.web.app/
+# s link
+https://bikehaaat-f2ef4.web.app/
 
 # website features
 1. people can see different bikes which are stocked by different suppliers.
@@ -21,4 +23,5 @@ https://bikehaaat-f2ef4.web.app/
 6. cors
 7. heroku database
 8. react leaflet
-9. 
+9. react toastify
+10. 

@@ -124,7 +124,7 @@ const EditProduct = () => {
                                             <Form.Control onChange={Sup} type="text" name='supplier' placeholder="Supplier" required />
                                         </Form.Group>
 
-                                        <Button variant="primary" type="submit">
+                                        <Button variant="primary" type="submit" className='btn btn-warning'>
                                             Update inventory
                                         </Button>
                                     </Form>
