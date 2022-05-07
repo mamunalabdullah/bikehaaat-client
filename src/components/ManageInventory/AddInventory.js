@@ -1,9 +1,13 @@
 import axios from 'axios';
 import React from 'react';
 import { Button, Form } from 'react-bootstrap';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { toast } from 'react-toastify';
+import auth from '../../Firebase/firebase.init';
+
 
 const AddInventory = () => {
+    const [user] = useAuthState(auth);
     const handleUpload = (event) => {
         event.preventDefault();
         const email = event.target.email.value;
@@ -48,7 +52,7 @@ const AddInventory = () => {
                                     <Form onSubmit={handleUpload}>
                                         <Form.Group className="mb-3" controlId="formBasicEmail">
                                             <Form.Label>Your Email</Form.Label>
-                                            <Form.Control type="email" name='email' placeholder="Enter your email" required />
+                                            <Form.Control type="email" name='email' placeholder="Enter your email" value={user.email} required />
                                         </Form.Group>
                                         <Form.Group className="mb-3" controlId="formBasicEmail">
                                             <Form.Label>Product Name</Form.Label>
