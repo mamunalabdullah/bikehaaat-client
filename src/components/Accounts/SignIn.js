@@ -1,7 +1,6 @@
-import axios from 'axios';
 import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import React, { useRef } from 'react';
-import { useSignInWithEmailAndPassword, useSendPasswordResetEmail, useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import { useSignInWithEmailAndPassword, useSendPasswordResetEmail } from 'react-firebase-hooks/auth';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -13,8 +12,6 @@ const SignIn = () => {
     // email authentication /////////////////////////////////////////
     
     const [signInWithEmailAndPassword, user, loading, error] =useSignInWithEmailAndPassword(auth);
-
-    // const [token] = useToken(user);
 
     const navigate = useNavigate()
     const location = useLocation();
