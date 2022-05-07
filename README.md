@@ -5,9 +5,9 @@ https://github.com/ProgrammingHeroWC4/warehouse-management-client-side-mamunalab
 https://github.com/ProgrammingHeroWC4/warehouse-management-server-side-mamunalabdullah
 
 # live site link
-https://bikehaaat-f2ef4.web.app/
+https://bikehaaat-d8dde.web.app/
 # s link
-https://bikehaaat-f2ef4.web.app/
+https://bikehaaat-d8dde.web.app/
 
 # website features
 1. people can see different bikes which are stocked by different suppliers.

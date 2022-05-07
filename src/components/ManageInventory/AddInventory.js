@@ -35,7 +35,7 @@ const AddInventory = () => {
         .then((response) => response.json())
         .then((json) => console.log(json));
 
-        axios.post('https://bikehaaat-f2ef4.web.app/item', item)
+        axios.post('https://bikehaaat-d8dde.web.app/item', item)
         .then(response => {
             console.log(response);
         })

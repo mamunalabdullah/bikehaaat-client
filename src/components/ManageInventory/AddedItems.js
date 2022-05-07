@@ -14,7 +14,7 @@ const AddedItems = () => {
     useEffect( () => {
         const getItems = async() => {
             const email = user?.email;
-            const url =`https://bikehaaat-f2ef4.web.app/item?email=${email}`;
+            const url =`https://bikehaaat-d8dde.web.app/item?email=${email}`;
             const {data} = await axios.get(url);
             setItems(data)
             // try {
