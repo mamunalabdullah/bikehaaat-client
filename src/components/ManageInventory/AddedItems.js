@@ -33,7 +33,7 @@ const AddedItems = () => {
     return (
         <div>
             <h2 className='py-3'>total items: {items.length}</h2>
-            {
+            {/* {
                 items.map(item => <div key={item._id} className='container py-5'>
                     <div className="row">
                         <div className="card" style= {{width:18+"rem"}}>
@@ -47,7 +47,7 @@ const AddedItems = () => {
                         </div> 
                     </div>
                 </div>)
-            }
+            } */}
         </div>
     );
 };
