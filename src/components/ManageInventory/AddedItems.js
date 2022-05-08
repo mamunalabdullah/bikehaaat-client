@@ -29,7 +29,6 @@ const AddedItems = () => {
                 <thead>
                     <tr>
                         <th>Name</th>
-                        <th>Details</th>
                         <th>Quantity</th>
                         <th>Price</th>
                         <th>Supplier</th>
@@ -41,7 +40,6 @@ const AddedItems = () => {
                         <tbody key={item._id}>
                             <tr>
                                 <td>{item.name}</td>
-                                <td>{item.des}</td>
                                 <td>{item.quantity}</td>
                                 <td>{item.price}</td>
                                 <td>{item.supplier}</td>
