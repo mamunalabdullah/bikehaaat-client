@@ -13,6 +13,8 @@ https://stackoverflow.com/users/19036077/md-abdullah-al-mamun?tab=questions
 1. people can see different bikes which are stocked by different suppliers.
 2. bikes description, price, quantity are shown.
 3. people can login and restock the bikes quantity.
+4. Bikes can be delivered by one.
+5. 
 
 # website framework used 
 1. firebase
