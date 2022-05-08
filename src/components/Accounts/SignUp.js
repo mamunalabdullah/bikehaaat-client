@@ -73,7 +73,7 @@ const SignUp = () => {
                 <div className="redirect">
                     <p>
                     User of Bikehaaat ? 
-                    <Link to="/login" className='account-link me-2'> Login with Account</Link>
+                    <Link to="/login" className='me-2'> Login with Account</Link>
                     </p>
                 </div>
             </form>

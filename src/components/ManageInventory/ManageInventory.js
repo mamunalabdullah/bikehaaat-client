@@ -53,7 +53,7 @@ const ManageInventory = ({inventory}) => {
                 <div className="d-flex justify-content-around">
                     <button onClick={()=>edit(inventory._id)} className='btn btn-warning'><span><FaEdit /> </span></button>
                     <button onClick={()=>deleteHandle(inventory._id)} className='btn btn-danger'><span><AiFillDelete /></span></button>
-                    <button onClick={()=>handleQuantity(inventory._id)} className='btn'><span><AiOutlineDeliveredProcedure /></span></button>
+                    <button onClick={()=>handleQuantity(inventory._id)} className='btn btn-primary'><span><AiOutlineDeliveredProcedure /></span></button>
                 </div>
             </td>
         </tr>
