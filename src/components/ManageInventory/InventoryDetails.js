@@ -1,6 +1,7 @@
 import React from 'react';
 import { FormLabel } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { SingleInventory } from '../Hook/SingleInventory';
 
 const InventoryDetails = () => {
@@ -29,7 +30,7 @@ const InventoryDetails = () => {
             console.log(data);
 
         });
-        
+        toast('Restock complete');
         e.target.reset();
     }
 
@@ -48,11 +49,12 @@ const InventoryDetails = () => {
                 'Content-type': 'application/json; charset=UTF-8',
             },
         })
-            .then(response => response.json())
-            .then(data => {
-                console.log(data);
-
-            });
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            
+        });
+        toast('Deliver complete');
     }
 
     return (
@@ -68,11 +70,14 @@ const InventoryDetails = () => {
                     <p className="card-text">{inventory.description}</p>
                     <p>Supplier: {inventory.supplier}</p>
                     <p>Price: {inventory.price}</p>
-                    <form onSubmit={handleQuantity} className="d-flex justify-content-around px-5">   
+                    <form onSubmit={handleQuantity} >   
+                        <div className="d-flex justify-content-around px-5">
                         <FormLabel className='mt-1'>Quantity: </FormLabel>
                         <input className='border border-white w-50' type="number" name="quantity" value={inventory.quantity} />
+                        </div>
+                        <button className='btn btn-danger'>Deliver</button>
                     </form>
-                    <button className='btn btn-danger'>Deliver</button>
+                    
                 </div>
             </div> 
         </div>

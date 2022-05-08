@@ -34,7 +34,7 @@ const ManageInventory = ({inventory}) => {
             })
             .then(res => res.json())
             .then(data => {
-                toast("Delete this Product")
+                toast("Delete Product")
                 const rest = inventories.filter(inventory => inventory._id !== id);
                 setInventories(rest);
             })
