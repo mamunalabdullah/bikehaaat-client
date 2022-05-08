@@ -1,33 +1,64 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import { FormLabel } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
+import { SingleInventory } from '../Hook/SingleInventory';
 
 const InventoryDetails = () => {
     const { id } = useParams();
-    const [inventory, setInventory] = useState({});
-    const deliverHandle = () => {
-        let quantity = inventory.quantity;
-        let newQuantity = quantity - 1;
-        quantity= newQuantity;
-        console.log(quantity);
-    } 
-    useEffect(() => {
-        const url = `https://evening-wave-77311.herokuapp.com/inventory/${id}`;
-        fetch(url)
-        .then(res => res.json())
-        .then(data => setInventory(data));
-    }, []);
+    const [inventory] = SingleInventory(id)
+;
 
-    const handleRestock = (event) =>{
-        event.preventDefault();
-        const number = event.target.number.value;
-        console.log(number);
-        event.target.reset();
+    const handleReStock = e => {
+        e.preventDefault();
+        const quantity = parseInt(e.target.reStock.value) + parseInt(inventory.quantity);
+        const updateRestock = { quantity };
+        const url = `https://evening-wave-77311.herokuapp.com/inventory/${id}`;
+        console.log(url);
+        fetch(url, {
+            method: 'PUT',
+
+            headers: {
+                'Content-type': 'application/json; charset=UTF-8',
+            },
+            body: JSON.stringify(
+                updateRestock
+            ),
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+
+        });
+        
+        e.target.reset();
+    }
+
+    const handleQuantity = e => {
+        e.preventDefault();
+        const quantity = e.target.quantity.value - 1;
+        const updateQuantity = { quantity }
+        console.log(updateQuantity);
+        const url = `https://evening-wave-77311.herokuapp.com/inventory/${id}`;
+        fetch(url, {
+            method: 'PUT',
+            body: JSON.stringify(
+                updateQuantity
+            ),
+            headers: {
+                'Content-type': 'application/json; charset=UTF-8',
+            },
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+
+            });
     }
 
     return (
         <div className='py-5'>
-            <form onSubmit={handleRestock}>
-                <input type="number" name="number" id="number" placeholder='Add quantity to restock' />
+            <form onSubmit={handleReStock}>
+                <input type="number" name="reStock" id="number" placeholder='Add quantity to restock' />
                 <button type="submit" className='ms-2 bg-info border-0'>Restock</button>
             </form>
             <div className="card mx-auto my-2" style= {{width:18+"rem"}}>
@@ -35,9 +66,13 @@ const InventoryDetails = () => {
                 <div className="card-body">
                     <h5 className="card-title">{inventory.name}</h5>
                     <p className="card-text">{inventory.description}</p>
-                    <p>Price: {inventory.price} | Quantity: {inventory.quantity}</p>
                     <p>Supplier: {inventory.supplier}</p>
-                    <button className='btn btn-primary' onClick={deliverHandle}>Deliver</button>
+                    <p>Price: {inventory.price}</p>
+                    <form onSubmit={handleQuantity} className="d-flex justify-content-around px-5">   
+                        <FormLabel className='mt-1'>Quantity: </FormLabel>
+                        <input className='border border-white w-50' type="number" name="quantity" value={inventory.quantity} />
+                    </form>
+                    <button className='btn btn-danger'>Deliver</button>
                 </div>
             </div> 
         </div>

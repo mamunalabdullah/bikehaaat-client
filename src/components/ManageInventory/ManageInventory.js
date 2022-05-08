@@ -1,13 +1,10 @@
 import React, { useState } from 'react';
 import { AiFillDelete, AiOutlineDeliveredProcedure } from 'react-icons/ai';
 import { FaEdit } from 'react-icons/fa';
-// import { GrView } from 'react-icons/gr';
-// import { FaEdit } from 'react-icons/fa';
 import { toast } from 'react-toastify';
 import { useNavigate, useParams } from 'react-router-dom';
 import { InventoriesHook } from '../Hook/InventoriesHook';
 import './ManageInventory.css';
-import { CustomHook } from '../CustomHook/CustomHook';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../Firebase/firebase.init';
 
@@ -21,13 +18,10 @@ const ManageInventory = ({inventory}) => {
         navigate(`/editInventory/${id}`);
     }
     const handleQuantity = id =>{
-        navigate(`/quantity/${id}`);
+        navigate(`/inventory/${id}`);
     }
-    const handleView = id =>{
-        navigate(`/view/${id}`)
-    }
-
-    const [products, setProducts] = CustomHook();
+    
+    const [inventories, setInventories] = InventoriesHook();
     const [count, setCount] =useState(0);
     const {id} = useParams();
 
@@ -41,8 +35,8 @@ const ManageInventory = ({inventory}) => {
             .then(res => res.json())
             .then(data => {
                 toast("Delete this Product")
-                const rest = products.filter(product => product._id !== id);
-                setProducts(rest);
+                const rest = inventories.filter(inventory => inventory._id !== id);
+                setInventories(rest);
             })
         }
     }
@@ -59,7 +53,7 @@ const ManageInventory = ({inventory}) => {
                 <div className="d-flex justify-content-around">
                     <button onClick={()=>edit(inventory._id)} className='btn btn-warning'><span><FaEdit /> </span></button>
                     <button onClick={()=>deleteHandle(inventory._id)} className='btn btn-danger'><span><AiFillDelete /></span></button>
-                    <button onClick={()=>handleQuantity(inventory._id)} className='btn'><span className='delivery-success'><AiOutlineDeliveredProcedure /></span></button>
+                    <button onClick={()=>handleQuantity(inventory._id)} className='btn'><span><AiOutlineDeliveredProcedure /></span></button>
                 </div>
             </td>
         </tr>

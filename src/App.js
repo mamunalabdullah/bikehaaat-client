@@ -16,7 +16,6 @@ import InventoryList from './components/ManageInventory/InventoryList';
 import ManageInventory from './components/ManageInventory/ManageInventory';
 import UpdateInventory from './components/ManageInventory/UpdateInventory';
 import NotFound from './components/NotFound/NotFound';
-import Quantity from './components/Quantity/Quantity';
 import RequireAuth from './components/RequireAuth/RequireAuth';
 
 function App() {
@@ -46,13 +45,6 @@ function App() {
           <RequireAuth>
             <UpdateInventory />
           </RequireAuth>} />
-          <Route path='/quantity/:id' element={
-          <RequireAuth>
-            <Quantity />
-            </RequireAuth>} />
-        {/* <Route path='/view/:id' element={<RequireAuth>
-          <ViewProduct />
-        </RequireAuth>} /> */}
         <Route path='items' element={
           <RequireAuth>
             <AddedItems />
