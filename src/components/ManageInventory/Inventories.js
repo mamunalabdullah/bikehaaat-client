@@ -2,45 +2,19 @@ import React, { useState, useEffect} from 'react';
 import { InventoriesHook } from '../Hook/InventoriesHook';
 import Inventory from './Inventory';
 import './Inventories.css';
+import { Link } from 'react-router-dom';
 
 const Inventories = () => {
-    // const [pageCount, setPageCount] = useState(0);
-    // const [page, setPage] = useState(0);
-    // const [size, setSize] = useState(10);
     const [inventories, setInventories] = InventoriesHook([]);
-
-    // useEffect(() => {
-    //     const url = `https://evening-wave-77311.herokuapp.com/inventories?page=${page}&size=${size}`;
-    //     fetch(url)
-    //     .then(res => res.json())
-    //     .then(data => setInventories(data))
-    // },[page, size])
-
-    // useEffect(() => {
-    //     const url = `https://evening-wave-77311.herokuapp.com/inventoryCount`;
-    //     fetch(url)
-    //     .then(res => res.json())
-    //     .then(data => {
-    //         const count = data.count;
-    //         const pages = Math.ceil(count/10);
-    //         setPageCount(pages);
-    //     })
-    // },[]);
 
     return (
         <div className="container py-3">
             <div className='row'>
                 {
                     inventories.map( inventory => <Inventory key={inventory._id} inventory={inventory} />)
-                } 
-            </div>
-            {/* <div className='pagination'>
-                {
-                    [...Array(pageCount).keys()].map(number => <button className={page === number ? 'selected' : ''} onClick={() => setPage(number)}>{number}</button>)
                 }
-            
-            </div> */}
-            
+            </div>  
+            <Link to="/addinventory" ><button className='btn btn-info'>Add New Inventory</button></Link>      
         </div>
     );
 };
