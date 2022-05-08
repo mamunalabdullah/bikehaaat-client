@@ -1,74 +1,81 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useCreateUserWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import auth from '../../Firebase/firebase.init';
+import { GoogleAuthProvider, sendEmailVerification, signInWithPopup } from 'firebase/auth';
 
 
 const SignUp = () => {
 
-    // email authentication /////////////////////////////////////////
+    const provider = new GoogleAuthProvider();
+    const handleGoogle = () => {
+        
+        signInWithPopup(auth, provider)
+        .then((result) => {
+            // This gives you a Google Access Token. You can use it to access the Google API.
+            const credential = GoogleAuthProvider.credentialFromResult(result);
+            const token = credential.accessToken;
+            // The signed-in user info.
+            const user = result.user;
+            // ...
+            if (user) {
+                navigate(from, {replace: true});
+            }
+        }).catch((error) => {
+            // Handle Errors here.
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            // The email of the user's account used.
+            const email = error.email;
+            // The AuthCredential type that was used.
+            const credential = GoogleAuthProvider.credentialFromError(error);
+            // ...
+        });
 
-    const [ createUserWithEmailAndPassword, user ] = useCreateUserWithEmailAndPassword(auth, {sendEmailVerification: true});
-
+    }
+    /////////////////////////////////////////////////////////////////////////
     
+
+    // email authentication  /////////////////////////////
+    const [
+    createUserWithEmailAndPassword,
+    user,
+    loading,
+    error,
+    ] = useCreateUserWithEmailAndPassword(auth, {sendEmailVerification: true});
 
     const navigate = useNavigate()
     const location = useLocation();
     let from = location.state?.from?.pathname || "/";
-    let errorMessage;
 
     if (user) {
         navigate(from, {replace: true});
     }
 
-    const handleRegistration = event => {
+    const handleSignup = event => {
         event.preventDefault();
         const name = event.target.name.value;
         const email = event.target.email.value;
         const password = event.target.password.value;
-        event.target.reset();
         
 
         createUserWithEmailAndPassword(email, password);
-        
+    /////////////////////////////////////////////////////////////////////////
     }
-
-    /////////////////////////////////////////////////////////////////
-
-    // google authentication ///////////////////////////////////////////
-
-    const [signInWithGoogle, googleUser, googleLoading, googleError] = useSignInWithGoogle(auth);
-    if (googleError) {
-            errorMessage = <p>{googleError.message}</p>;
-        }
-    if (googleLoading) {
-        errorMessage = <p>Loading...</p>;
-      }
-      if (googleUser) {
-        navigate(from, {replace: true});
-      }
-
-      /////////////////////////////////////////////////////////////////////////
-
-
     return (
         <div>
             <h1>Sign Up here Please !!!</h1>
-            <form onSubmit={handleRegistration}>
-                <div className="mb-3">
-                    <input type="text" name='name' className="form-control w-50 mx-auto" id="name" placeholder='Enter your name...' required/>
-                </div>
+            <form onSubmit={handleSignup}>
                 <div className="mb-3">
                     <input type="email" name='email' className="form-control w-50 mx-auto" id="email" placeholder='Enter your email...' required/>
                 </div>
                 <div className="mb-3">
                     <input type="password" name='password' className="form-control w-50 mx-auto" id="password" placeholder='Enter your Password...' required/>
                 </div>
-                {errorMessage}
                 <div className="buttons my-4">
                     <button type="submit" className="btn btn-primary">Register</button>
                     <span className='mx-2 text-danger fw-bold'>/</span>
-                    <button className="btn btn-info" onClick={() => signInWithGoogle()}>Register with Google</button>
+                    <button className="btn btn-info" onClick={handleGoogle}>Register with Google</button>
                 </div>
                 <div className="redirect">
                     <p>

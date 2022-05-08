@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import React, { useRef } from 'react';
 import { useSignInWithEmailAndPassword, useSendPasswordResetEmail } from 'react-firebase-hooks/auth';
@@ -27,7 +28,7 @@ const SignIn = () => {
         errorMessage = <p>Loading...</p>;
       }
     if (user) {
-        navigate(from, {replace: true});
+        // navigate(from, {replace: true});
     }
 
     const handleLogin = async event => {
@@ -37,6 +38,9 @@ const SignIn = () => {
         event.target.reset();
     
         await signInWithEmailAndPassword(email, password);
+        const {data} = await axios.post('http://evening-wave-77311.herokuapp.com/login', {email});
+        localStorage.setItem('accessToken', data.accessToken);
+        navigate(from, {replace: true});
     }
 
     /////////////////////////////////////////////////////////////////

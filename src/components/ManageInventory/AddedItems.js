@@ -15,8 +15,12 @@ const AddedItems = () => {
     useEffect(() => {
         const getItems = async () => {
             const email = user?.email;
-            const url = `https://evening-wave-77311.herokuapp.com/item?email=${email}`;
-            const { data } = await axios.get(url);
+            const url = `http://evening-wave-77311.herokuapp.com/item?email=${email}`;
+            const { data } = await axios.get(url, {
+                headers: {
+                    authorization: `Bearer ${localStorage.getItem('accessToken')}`
+                }
+            });
             console.log(data);
             setItems(data)      
         }
